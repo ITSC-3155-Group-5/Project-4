@@ -23,6 +23,7 @@ class Example extends React.Component {
     // We read the example model data into the state variable 'name'
     this.state = {
       name: window.models.exampleModel().name,
+      motto: window.models.exampleModel().motto,
       counter: 0,
       inputValue: '',
       buttonWasClicked: '',
@@ -33,6 +34,7 @@ class Example extends React.Component {
     // generate new functions that handle the event by just calling
     // the method that handles the event.
     this.handleChangeBound = event => this.handleChange(event);
+    this.handleMottoChangeBound = event => this.handleMottoChange(event);
     // Note: A commmon idiom in React code is to use JavaScript bind() to
     // smash the method to accomplish this passthrough to the method:
     //      this.handleChange = this.handleChange.bind(this);
@@ -69,6 +71,10 @@ class Example extends React.Component {
     this.setState({ inputValue: event.target.value });
   }
 
+  handleMottoChange(event) {
+    this.setState({ motto: event.target.value });
+  }
+
   // Method called when the button is pushed
   /* eslint-disable-next-line no-unused-vars */
   handleButtonClick(buttonName, event) {
@@ -101,9 +107,19 @@ class Example extends React.Component {
     return (
       <div className="container Example">
         <h1>Project 4 React.js Example</h1>
-
+        
+        
         <div className="motto-update">
           {/* Your problem #1 motto displaying and updating widget goes here */}
+          {this.state.name}
+          <br/>
+          {this.state.motto}
+          <hr></hr>
+          
+        </div>
+        <div>
+            <label htmlFor="mottoId">Change Motto: </label>
+            <input id="mottoId" type="text" value={this.state.motto} onChange={this.handleMottoChangeBound} />
         </div>
 
         <p>
